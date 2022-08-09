@@ -1,11 +1,14 @@
 import NavBar from './Components/NavBar'
 import { Outlet } from 'react-router-dom'
+import { useState } from 'react'
 
 function App() {
+  const [shoppingCart, setShoppingCart] = useState([])
+
   return (
     <div className="App">
       <NavBar />
-      <Outlet />
+      <Outlet context={{ shoppingCart, setShoppingCart }} />
     </div>
   )
 }

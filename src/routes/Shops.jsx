@@ -1,5 +1,10 @@
 import React from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useOutletContext,
+} from 'react-router-dom'
 import { getShops } from '../data'
 
 function QueryNavLink({ to, ...props }) {
@@ -29,7 +34,7 @@ const Shops = () => {
           </QueryNavLink>
         ))}
       </nav>
-      <Outlet />
+      <Outlet context={useOutletContext()} />
     </div>
   )
 }
