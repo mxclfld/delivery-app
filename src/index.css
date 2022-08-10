@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f6f7f9;
 }
 
 code {
@@ -12,7 +13,132 @@ code {
     monospace;
 }
 
+/* NAVBAR */
+
 .navbar {
   display: flex;
+  align-items: center;
+  gap: 20px;
   border-bottom: 1px solid black;
+  padding-left: 50px;
+  background-color: white;
+  border: 0;
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+}
+
+.navbar a {
+  margin: 0.5rem 0;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  margin-left: 150px;
+  gap: 30px;
+}
+
+ul a:hover {
+  background-color: #f6f7f9;
+  transition: background-color 0.5s;
+  border-radius: 10px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+}
+
+.logo span#blue {
+  color: #0057b7;
+}
+
+.logo span#yellow {
+  color: #ffd700;
+}
+
+/* SHOPS */
+
+.Shops nav {
+  padding: 0 20px;
+  margin: 10px 10px 0 10px;
+  padding-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
+  width: 265px;
+}
+
+.Shops nav a {
+  color: black;
+  font-size: 18px;
+  margin: 0;
+  padding: 10px 10px;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+}
+
+.Shops nav a:hover {
+  background-color: #f6f7f9;
+}
+
+/* SHOP */
+
+.Shop {
+  padding: 0 15px;
+}
+
+.shop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* PRODUCTS */
+
+.Shop .product h1 {
+  font-size: 24px;
+  margin: 0;
+  padding-top: 0;
+}
+
+.Shop .product {
+  box-sizing: border-box;
+  padding: 25px;
+  border-radius: 10px;
+  width: 300px;
+  height: 250px;
+  background-color: white;
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Shop .product button {
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: white;
+  padding: 10px;
+  border: 0;
+  font-weight: bold;
+
+  border-radius: 10px;
+  transition: background-color 0.5s, box-shadow 0.5s, transform 0.5s;
+}
+
+.Shops .product button:hover {
+  background-color: #f6f7f9;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transform: scale(1.1);
 }

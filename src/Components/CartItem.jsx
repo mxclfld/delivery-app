@@ -23,7 +23,7 @@ const CartItem = ({ item, shoppingCart, setShoppingCart }) => {
   }
 
   return (
-    <div style={{ padding: '50px', border: '1px solid black' }}>
+    <div>
       <p>{item.name}</p>
       <p>Cost: {item.cost}</p>
       <input type="number" min="0" value={item.count} onChange={handleChange} />

@@ -4,29 +4,37 @@ import { NavLink } from 'react-router-dom'
 const NavBar = () => {
   return (
     <div className="navbar">
-      <NavLink
-        style={({ isActive }) => ({
-          display: 'block',
-          margin: '1rem 0',
-          padding: '15px',
-          color: isActive ? 'red' : '',
-        })}
-        to={'/shops'}
-      >
-        Shops
+      <NavLink className="logo" to={'/'}>
+        <span id="blue">U</span>
+        <span id="yellow">S</span>hop
       </NavLink>
-      |
-      <NavLink
-        style={({ isActive }) => ({
-          display: 'block',
-          margin: '1rem 0',
-          padding: '15px',
-          color: isActive ? 'red' : '',
-        })}
-        to={'/cart'}
-      >
-        Shopping Cart
-      </NavLink>
+      <ul>
+        <li>
+          <NavLink
+            className="navlink"
+            style={({ isActive }) => ({
+              display: 'block',
+              color: isActive ? 'red' : '',
+              fontWeight: 'bold',
+            })}
+            to={'/shops'}
+          >
+            Shops
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            style={({ isActive }) => ({
+              display: 'block',
+              color: isActive ? 'red' : '',
+              fontWeight: 'bold',
+            })}
+            to={'/cart'}
+          >
+            Shopping Cart
+          </NavLink>
+        </li>
+      </ul>
     </div>
   )
 }

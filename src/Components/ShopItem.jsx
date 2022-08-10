@@ -14,18 +14,16 @@ const ShopItem = ({ item, shoppingCart, setShoppingCart }) => {
   }
 
   return (
-    <div
-      style={{
-        padding: '50px',
-        border: '1px solid black',
-        borderRadius: '10px',
-      }}
-    >
-      <h1>{item.name}</h1>
-      <p>{item.cost}</p>
-      <button style={{ display: 'block' }} onClick={() => addItem(item)}>
-        Add to Cart
-      </button>
+    <div className="product">
+      <div className="title">
+        <h1>{item.name}</h1>
+      </div>
+      <main>
+        <p>{item.cost}</p>
+        <button style={{ display: 'block' }} onClick={() => addItem(item)}>
+          Add to Cart
+        </button>
+      </main>
     </div>
   )
 }
