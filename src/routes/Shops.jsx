@@ -25,7 +25,7 @@ const Shops = () => {
               return {
                 display: 'block',
                 fontWeight: isActive ? 'bold' : '',
-                color: isActive ? 'red' : '',
+                color: isActive ? '#e0474c' : '',
               }
             }}
             to={`/shops/${shop.id}`}

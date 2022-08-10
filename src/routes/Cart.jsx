@@ -21,26 +21,28 @@ const Cart = () => {
   }, [shoppingCart])
 
   return (
-    <div>
+    <div className="Cart">
       <div className="container" style={{ display: 'flex' }}>
         <form action="POST" id="order-form">
           <label htmlFor="name">Name:</label>
-          <input type="text" name="name" />
+          <input type="text" name="name" autoComplete="off" />
           <label htmlFor="email">Email:</label>
-          <input type="text" name="email" />
+          <input type="text" name="email" autoComplete="off" />
           <label htmlFor="phone">Phone:</label>
-          <input type="text" name="phone" />
+          <input type="text" name="phone" autoComplete="off" />
           <label htmlFor="address">Address:</label>
-          <input type="text" name="address" />
+          <input type="text" name="address" autoComplete="off" />
         </form>
-        {shoppingCart.map((item) => (
-          <CartItem
-            item={item}
-            key={item.name}
-            shoppingCart={shoppingCart}
-            setShoppingCart={setShoppingCart}
-          />
-        ))}
+        <div className="cart">
+          {shoppingCart.map((item) => (
+            <CartItem
+              item={item}
+              key={item.name}
+              shoppingCart={shoppingCart}
+              setShoppingCart={setShoppingCart}
+            />
+          ))}
+        </div>
       </div>
       <p>Total: {total}</p>
       <input type="submit" form="order-form" />

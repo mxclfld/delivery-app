@@ -14,7 +14,7 @@ const NavBar = () => {
             className="navlink"
             style={({ isActive }) => ({
               display: 'block',
-              color: isActive ? 'red' : '',
+              color: isActive ? '#e0474c' : '',
               fontWeight: 'bold',
             })}
             to={'/shops'}
@@ -26,7 +26,7 @@ const NavBar = () => {
           <NavLink
             style={({ isActive }) => ({
               display: 'block',
-              color: isActive ? 'red' : '',
+              color: isActive ? '#e0474c' : '',
               fontWeight: 'bold',
             })}
             to={'/cart'}
