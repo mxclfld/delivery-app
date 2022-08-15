@@ -1,22 +1,28 @@
 const express = require('express')
-const { sequelize, Shop } = require('../../db/models')
+const { sequelize, User } = require('../../db/models')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
-    const shops = await Shop.findAll()
-    return res.json(shops)
+    const users = await User.findAll()
+    return res.json(users)
   } catch (err) {
     console.log(err)
     return res.status(500).json({ msg: 'Something went wrong' })
   }
 })
 
+/*
+router.get('/:shopId', async (req, res) => {
+
+})
+*/
+
 router.post('/', async (req, res) => {
-  const { name } = req.body
+  const { name, email, phone, address } = req.body
   try {
-    const shop = await Shop.create({ name })
-    return res.json(shop)
+    const user = await User.create({ name, email, phone, address })
+    return res.json(user)
   } catch (err) {
     console.log(err)
     return res.status(500).json({ msg: 'Something went wrong' })

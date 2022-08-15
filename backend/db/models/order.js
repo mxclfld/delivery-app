@@ -7,33 +7,22 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-    }
-
-    toJSON() {
-      return { ...this.get(), id: undefined }
+    static associate({ User, Product, ShopCart }) {
+      this.belongsTo(User, { foreignKey: 'userId' })
+      this.belongsToMany(Product, {
+        as: 'ProductsInOrder',
+        through: ShopCart,
+        foreignKey: 'orderId',
+      })
     }
   }
   Order.init(
-    {
-      cart: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      user: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      price: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-    },
+    {},
     {
       sequelize,
       tableName: 'orders',
       modelName: 'Order',
+      timestamps: false,
     }
   )
   return Order
