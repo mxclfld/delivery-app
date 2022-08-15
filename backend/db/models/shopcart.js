@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Product, {
         foreignKey: 'productId',
         targetKey: 'id',
-        as: 'Product',
+        as: 'products',
       })
-      this.belongsTo(Product, {
+      this.belongsTo(Order, {
         foreignKey: 'orderId',
         targetKey: 'id',
-        as: 'Order',
+        as: 'orders',
       })
     }
   }
@@ -28,16 +28,16 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      orderId: {
-        type: DataTypes.INTEGER,
-        primaryKey: false,
-        references: {
-          model: 'Order',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      },
+      // orderId: {
+      //   type: DataTypes.INTEGER,
+      //   primaryKey: false,
+      //   references: {
+      //     model: 'Order',
+      //     key: 'id',
+      //   },
+      //   onDelete: 'CASCADE',
+      //   onUpdate: 'CASCADE',
+      // },
       productId: {
         type: DataTypes.INTEGER,
         primaryKey: false,
