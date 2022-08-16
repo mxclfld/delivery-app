@@ -8,26 +8,26 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ Product, Order }) {
-      this.belongsTo(Product, {
-        foreignKey: 'productId',
-        targetKey: 'id',
-        as: 'products',
-      })
-      this.belongsTo(Order, {
-        foreignKey: 'orderId',
-        targetKey: 'id',
-        as: 'orders',
-      })
+      // this.belongsTo(Product, {
+      //   foreignKey: 'productId',
+      //   targetKey: 'id',
+      //   as: 'products',
+      // })
+      // this.belongsTo(Order, {
+      //   foreignKey: 'orderId',
+      //   targetKey: 'id',
+      //   as: 'orders',
+      // })
     }
   }
   ShopCart.init(
     {
-      shopCartId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-      },
+      // shopCartId: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   autoIncrement: true,
+      //   primaryKey: true,
+      // },
       // orderId: {
       //   type: DataTypes.INTEGER,
       //   primaryKey: false,
@@ -38,16 +38,16 @@ module.exports = (sequelize, DataTypes) => {
       //   onDelete: 'CASCADE',
       //   onUpdate: 'CASCADE',
       // },
-      productId: {
-        type: DataTypes.INTEGER,
-        primaryKey: false,
-        references: {
-          model: 'Product',
-          key: 'id',
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      },
+      // productId: {
+      //   type: DataTypes.INTEGER,
+      //   primaryKey: false,
+      //   references: {
+      //     model: 'Product',
+      //     key: 'id',
+      //   },
+      //   onDelete: 'CASCADE',
+      //   onUpdate: 'CASCADE',
+      // },
       count: {
         type: DataTypes.INTEGER,
         allowNull: false,
