@@ -3,10 +3,17 @@ const { sequelize, Order, User, Product, Shop } = require('../db/models')
 const getOrder = async (req, res) => {
   const { orderId } = req.params
   try {
-    const order = Order.findOne({ where: { orderId }, include: [Product] })
-    req.json(order)
+    const order = await Order.findOne({
+      where: { id: orderId },
+      include: {
+        model: Product,
+        as: 'products',
+      },
+    })
+    return res.json(order)
   } catch (err) {
-    req.status(500).json(err)
+    console.log(err)
+    return res.status(500).json(err)
   }
 }
 

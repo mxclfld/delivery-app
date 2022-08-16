@@ -13,8 +13,12 @@ const getShops = async (req, res) => {
 const getShopProducts = async (req, res) => {
   const { shopId } = req.params
   try {
-    const shop = Shop.findOne({ where: { id: shopId } })
+    const shop = await Shop.findOne({
+      where: { id: shopId },
+      include: { model: Product, as: 'products' },
+    })
     if (!shop) return res.status(400).json({ msg: 'No such shop!' })
+    return res.json(shop)
   } catch (err) {
     return res.status(500).json({ msg: 'Something went wrong!' })
   }
