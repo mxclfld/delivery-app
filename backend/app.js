@@ -1,9 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const shop = require('./routes/api/shop')
 const order = require('./routes/api/order')
 const { sequelize, Order, User } = require('./db/models')
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 app.use('/shop', shop)
