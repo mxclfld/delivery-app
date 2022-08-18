@@ -18,7 +18,7 @@ const getOrder = async (req, res) => {
 }
 
 const postOrder = async (req, res) => {
-  const { user, productList } = req.body
+  const { user, productList } = req.body.data
 
   const userDB = await User.findOne({
     where: {
@@ -73,7 +73,10 @@ const postOrder = async (req, res) => {
     console.log('1111111111111111111111111111111111111111111111111111111111111')
     const response = await Order.findOne({
       where: { id: orderId },
-      include: Product,
+      include: {
+        model: Product,
+        as: 'products',
+      },
     })
 
     res.status(200).json(response)

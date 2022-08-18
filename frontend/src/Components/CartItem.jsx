@@ -26,7 +26,7 @@ const CartItem = ({ item, shoppingCart, setShoppingCart }) => {
   return (
     <div className="cart-item">
       <p className="cart-item-title">{item.name}</p>
-      <p>Cost: {item.cost}</p>
+      <p>Cost: {item.price}</p>
       <input type="number" min="1" value={item.count} onChange={handleChange} />
       <button onClick={handleClick}>
         <FaTrash />

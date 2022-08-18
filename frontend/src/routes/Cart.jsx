@@ -4,14 +4,17 @@ import { useState } from 'react'
 import { useOutletContext } from 'react-router-dom'
 import CartItem from '../Components/CartItem'
 import Form from '../Components/Form'
+import PopUp from '../Components/PopUp'
 
 const Cart = () => {
   const { shoppingCart, setShoppingCart } = useOutletContext()
   const [total, setTotal] = useState(0)
+  const [isValid, setIsValid] = useState(false)
+  const [popUp, setPopUp] = useState(false)
 
   const sum = () => {
     return shoppingCart.reduce(
-      (prev, curr) => prev + (curr.cost * curr.count || 0),
+      (prev, curr) => prev + (curr.price * curr.price || 0),
       0
     )
   }
@@ -21,12 +24,15 @@ const Cart = () => {
     setTotal(totalPrice)
   }, [shoppingCart])
 
-  const [isValid, setIsValid] = useState(false)
-
   return (
     <div className="Cart">
       <div className="container" style={{ display: 'flex' }}>
-        <Form setIsValid={setIsValid} />
+        <Form
+          setIsValid={setIsValid}
+          shoppingCart={shoppingCart}
+          setShoppingCart={setShoppingCart}
+          setPopUp={setPopUp}
+        />
         <div className="cart">
           {shoppingCart.map((item) => (
             <CartItem
@@ -49,6 +55,7 @@ const Cart = () => {
           form="order-form"
         />
       </div>
+      {popUp ? <PopUp setPopUp={setPopUp} /> : null}
     </div>
   )
 }

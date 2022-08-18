@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import { postOrder } from '../connector/client'
 import { useEffect } from 'react'
 import useForm from '../hooks/useForm'
 
-const Form = ({ setIsValid }) => {
+const Form = ({ setIsValid, shoppingCart, setShoppingCart, setPopUp }) => {
   const [values, handleChange] = useForm({
     name: '',
     email: '',
@@ -10,25 +11,59 @@ const Form = ({ setIsValid }) => {
     address: '',
   })
 
-  const [message, setMessage] = useState('')
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const productList = shoppingCart.map((cartItem) => {
+      return { productId: cartItem.id, count: cartItem.count }
+    })
+
+    const user = values
+    console.log(user)
+
+    const postData = {
+      productList: productList,
+      user: user,
+    }
+
+    const response = await postOrder(postData)
+    if (response) {
+      setShoppingCart([])
+      setPopUp(true)
+    }
+    return response
+  }
 
   const isValid = ({ name, email, phone, address }) => {
     const re = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    const isNameValid = name.length >= 6
+    const isNameValid = name.length >= 3
     const isEmailValid = re.test(email.trim())
-    const isPhoneValid = phone.length === 12 && phone.startsWith('380')
+    const isPhoneValid = phone.length === 13 && phone.startsWith('+380')
     const isAddressValid = address.length >= 10
-    console.log({ isNameValid, isEmailValid, isPhoneValid, isAddressValid })
-    return isNameValid && isEmailValid && isPhoneValid && isAddressValid
+    const isCartEmpty = !shoppingCart.length
+    console.log({
+      isNameValid,
+      isEmailValid,
+      isPhoneValid,
+      isAddressValid,
+      isCartEmpty,
+    })
+    return (
+      isNameValid &&
+      isEmailValid &&
+      isPhoneValid &&
+      isAddressValid &&
+      !isCartEmpty
+    )
   }
 
   useEffect(() => {
     const valid = isValid(values)
     setIsValid(valid)
+    console.log(shoppingCart)
   }, [values])
 
   return (
-    <form action="POST" id="order-form">
+    <form id="order-form" onSubmit={handleSubmit}>
       <label htmlFor="name">Name:</label>
       <input
         type="text"

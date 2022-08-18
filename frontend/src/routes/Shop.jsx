@@ -1,19 +1,44 @@
 import React from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
 import { useParams, useOutletContext } from 'react-router-dom'
 import ShopItem from '../Components/ShopItem'
-import { getShop } from '../data'
+import { getProducts } from '../connector/client'
 
 const Shop = () => {
-  let params = useParams()
-  const shop = getShop(parseInt(params.shopId, 10))
-  const shopItems = shop.items
+  const params = useParams()
+
+  const [shopName, setShopName] = useState('')
+  const [products, setProducts] = useState([])
   const { shoppingCart, setShoppingCart } = useOutletContext()
+
+  const id = parseInt(params.shopId, 10)
+
+  useEffect(() => {
+    const fetchProducts = async (id) => {
+      try {
+        const response = await getProducts(id)
+        setShopName(response.name)
+        setProducts(response.products)
+      } catch (err) {
+        if (err.response) {
+          console.log(err.response.data)
+          console.log(err.response.status)
+          console.log(err.response.headers)
+        } else {
+          console.log(err.message)
+        }
+      }
+    }
+
+    fetchProducts(id)
+  }, [id])
 
   return (
     <div className="Shop">
-      <h1>{shop.title}</h1>
+      <h1>{shopName}</h1>
       <div className="shop">
-        {shopItems.map((item) => (
+        {products.map((item) => (
           <ShopItem
             key={item.name}
             item={item}

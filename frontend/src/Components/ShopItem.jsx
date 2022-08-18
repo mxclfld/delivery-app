@@ -56,7 +56,7 @@ const ShopItem = ({ item, shoppingCart, setShoppingCart }) => {
         <h1>{item.name}</h1>
       </div>
       <main>
-        <p>{item.cost}</p>
+        <p>{item.price}</p>
         <button
           style={{ display: 'block', backgroundColor: buttonColor }}
           onClick={() => handleClick(item)}
