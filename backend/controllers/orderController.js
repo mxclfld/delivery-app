@@ -1,4 +1,4 @@
-const { sequelize, Order, User, Product, Shop } = require('../db/models')
+const { sequelize, Order, User, Product } = require('../db/models')
 
 const getOrder = async (req, res) => {
   const { orderId } = req.params
@@ -43,18 +43,14 @@ const postOrder = async (req, res) => {
   }
 
   try {
-    console.log('🦆')
     const productIdList = (await Product.findAll({ raw: true })).map(
       (product) => product.id
     )
-    console.log('🦆')
-    console.log(productIdList)
     const isInList = (value) => productIdList.includes(value)
 
     const isValidInput = productList
       .map((product) => product.productId)
       .every(isInList)
-    console.log('🦆')
     if (!isValidInput) {
       return res.status(400).json({ msg: 'Please provide valid product list!' })
     }
@@ -70,7 +66,6 @@ const postOrder = async (req, res) => {
         return product
       })
     )
-    console.log('1111111111111111111111111111111111111111111111111111111111111')
     const response = await Order.findOne({
       where: { id: orderId },
       include: {
@@ -87,21 +82,3 @@ const postOrder = async (req, res) => {
 }
 
 module.exports = { getOrder, postOrder }
-
-// productList.forEach(async (object) => {
-//   const { productId, count } = object
-//   const ORDER = 6
-//   await ShopCart.create({ ORDER, productId, count })
-// })
-// console.log('1111111111111111111111111PRODUCT LIST OK')
-// console.log('1111111111111111111111111PRODUCT LIST OK')
-// console.log('1111111111111111111111111PRODUCT LIST OK')
-// console.log('1111111111111111111111111PRODUCT LIST OK')
-// console.log('1111111111111111111111111PRODUCT LIST OK')
-
-// const response = await Order.findOne({
-//   where: { orderId },
-//   include: { model: Product },
-//   raw: true,
-//   nest: true,
-// })

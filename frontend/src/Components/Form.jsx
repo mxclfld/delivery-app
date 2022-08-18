@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { postOrder } from '../connector/client'
 import { useEffect } from 'react'
 import useForm from '../hooks/useForm'
@@ -18,7 +18,6 @@ const Form = ({ setIsValid, shoppingCart, setShoppingCart, setPopUp }) => {
     })
 
     const user = values
-    console.log(user)
 
     const postData = {
       productList: productList,
@@ -40,13 +39,6 @@ const Form = ({ setIsValid, shoppingCart, setShoppingCart, setPopUp }) => {
     const isPhoneValid = phone.length === 13 && phone.startsWith('+380')
     const isAddressValid = address.length >= 10
     const isCartEmpty = !shoppingCart.length
-    console.log({
-      isNameValid,
-      isEmailValid,
-      isPhoneValid,
-      isAddressValid,
-      isCartEmpty,
-    })
     return (
       isNameValid &&
       isEmailValid &&
@@ -59,7 +51,6 @@ const Form = ({ setIsValid, shoppingCart, setShoppingCart, setPopUp }) => {
   useEffect(() => {
     const valid = isValid(values)
     setIsValid(valid)
-    console.log(shoppingCart)
   }, [values])
 
   return (

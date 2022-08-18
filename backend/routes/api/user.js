@@ -12,12 +12,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-/*
-router.get('/:shopId', async (req, res) => {
-
-})
-*/
-
 router.post('/', async (req, res) => {
   const { name, email, phone, address } = req.body
   try {
